@@ -1,48 +1,71 @@
-<!-- NBA Daily Tracker Application -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBA Daily Tracker</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            transition: background-color 0.5s;
+        }
+        .dark { 
+            background-color: #121212;
+            color: white;
+        }
+        .light {
+            background-color: white;
+            color: black;
+        }
+        /* Add more CSS for layout, buttons, etc. */
+    </style>
 </head>
-<body>
+<body class="light">
     <header>
         <h1>NBA Daily Tracker</h1>
-        <button id="theme-toggle">Toggle Theme</button>
+        <button id="themeToggle">Toggle Theme</button>
+        <button id="favoritesToggle">Show Favorites</button>
     </header>
     <main>
-        <section id="favorites">
-            <h2>Your Favorites</h2>
-            <!-- Favorites will be listed here -->
-        </section>
-        <section id="analytics-dashboard">
-            <h2>Analytics Dashboard</h2>
-            <!-- Analytics will be displayed here -->
-        </section>
-        <section id="props-tracking">
-            <h2>Props Tracking</h2>
-            <!-- Props tracking information -->
-        </section>
-        <section id="live-odds">
-            <h2>Live Odds Board</h2>
-            <!-- Live odds will be updated here -->
-        </section>
-        <section id="standings">
-            <h2>Standings</h2>
-            <!-- Team standings will be shown here -->
-        </section>
-        <section id="team-stats">
-            <h2>Team Stats</h2>
-            <!-- Team stats will be displayed here -->
-        </section>
+        <div id="propsTracking"></div>
+        <div id="liveOdds"></div>
+        <div id="standings"></div>
+        <div id="teamStats"></div>
+        <div id="analyticsDashboard"></div>
     </main>
-    <footer>
-        <p>&copy; 2026 NBA Tracker. All rights reserved.</p>
-    </footer>
+    <script>
+        document.getElementById('themeToggle').onclick = function() {
+            document.body.classList.toggle('dark');
+            document.body.classList.toggle('light');
+        };
+
+        document.getElementById('favoritesToggle').onclick = function() {
+            // Logic to show/hide favorites
+        };
+
+        function fetchNBAData() {
+            // ESPN API integration to fetch live data
+            // This is a mock function; please replace it with actual API calls
+            const data = {
+                props: [], // populate with props data
+                odds: [],  // populate with live odds
+                standings: [],  // populate with standings
+                teamStats: {},  // populate with team stats
+                analytics: {},  // populate with analytics
+            };
+            updateUI(data);
+        }
+
+        function updateUI(data) {
+            // Update the UI with received data
+            document.getElementById('propsTracking').innerHTML = JSON.stringify(data.props);
+            document.getElementById('liveOdds').innerHTML = JSON.stringify(data.odds);
+            document.getElementById('standings').innerHTML = JSON.stringify(data.standings);
+            document.getElementById('teamStats').innerHTML = JSON.stringify(data.teamStats);
+            document.getElementById('analyticsDashboard').innerHTML = JSON.stringify(data.analytics);
+        }
+
+        fetchNBAData();
+    </script>
 </body>
 </html>
-
-<!-- Enhanced features include: Dark/Light theme toggle, favorites system with local storage, analytics dashboard, props tracking with filtering, live odds board, standings, team stats, responsive design for all devices, ESPN API integration for live game data, toast notifications, smooth animations, professional UI with gold accents, date navigation, and all functionality fully implemented and production-ready. -->
